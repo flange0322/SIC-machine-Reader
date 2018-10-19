@@ -33,7 +33,19 @@ public class Object_Code {
 						break;
 					}
 					else if(instruction.substring(start_Pos, end_Pos).equals("BYTE")) {
-						object_Codes.add("ACSII");
+						String Oper = instruction_Operator.get(instruction);
+						String word = "";
+						for(int j=1;j<Oper.length();j++) {
+							if(Oper.charAt(0) == 'C') {
+								if(Oper.charAt(j)!='\'')
+									word = word+Oper.charAt(j);
+							}
+							else{
+								if(Oper.charAt(j)!='\'')
+									word = word+Oper.charAt(j);
+							}
+						}
+						object_Codes.add(word);
 						break;
 					}
 					else if(instruction.substring(start_Pos, end_Pos).equals("WORD")) { //¯Ê­t¼Æ
