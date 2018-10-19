@@ -13,10 +13,14 @@ public class Main {
 	    Instruction_Operator IO = new Instruction_Operator(SB.getInstructionArrayList(),SB.getOperatorArrayList());
 	    Loc_Arithmetic LA = new Loc_Arithmetic(IO.getMap().get(IO.getFirst_Loc()),IO.getMap());
 	    Sign_Loc SL = new Sign_Loc(IO.getMap().get(IO.getFirst_Loc()),SB.getSignArrayList(),LA.getLoc(),SB.getPosArrayList());
-	    for(int i=0;i<LA.getLoc().size();i++) {
+	    /*for(int i=0;i<LA.getLoc().size();i++) {
 	    	System.out.println(LA.getLoc().get(i));
-	    }
+	    }*/
 	    
+	    Object_Code OC = new Object_Code(IO.getMap(),SL.getMap(),new Instruction_Op().getMap());
+	    for(int i=0;i<OC.getObject().size();i++) {
+	    	System.out.println(OC.getObject().get(i));
+	    }
 	    /*for(int i=0;i<SB.getSignArrayList().size();i++) {
     	System.out.println(SB.getSignArrayList().get(i));
     	}*/
