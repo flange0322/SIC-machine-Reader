@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 public class Sign_Loc extends data_Library{
 
+	//建立標記和Loc相對應的Table(SYM-TAB)
 	ArrayList<Integer>Sign_Pos;
 	ArrayList<String>Sign;
 	LinkedHashMap<String,String> sign_Loc;

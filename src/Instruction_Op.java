@@ -1,5 +1,6 @@
 import java.util.LinkedHashMap;
 
+//«ü¥O®w
 public class Instruction_Op extends data_Library{
 	LinkedHashMap<String,String> instruction_Opcodes;
 	public Instruction_Op() {

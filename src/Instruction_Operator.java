@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class Instruction_Operator extends data_Library{
+	//建立指令與運算元的Table
 	LinkedHashMap<String,String> instruction_Operator;
 	public ArrayList<String>Instruction;
     public ArrayList<String>Operator;

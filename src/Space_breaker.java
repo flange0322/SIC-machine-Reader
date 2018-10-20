@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 public class Space_breaker {
+	
+	//負責切割空白與enter,和判別切割的字串要丟指令、標記、運算元的哪個位置，以及日後標記所對應Loc位置做存取
 	public ArrayList<Integer>Pos;
 	public ArrayList<String>Sign;
     public ArrayList<String>Instruction;
@@ -77,19 +79,17 @@ public class Space_breaker {
 	    			is_Operator = false;
 	    		}
 	    		else{
-	    			if(!inputStr.substring(start_Pos, end_Pos).equals("COPY")) {
-	    				if(inputStr.substring(start_Pos, end_Pos).equals(".")) {
-	    					count_Point_Pass++;
-	    					input_door = false;
-	    				}
-	    				else if(input_door == true) {
-	    					Sign.add(inputStr.substring(start_Pos, end_Pos));
-	    					Pos.add(Instruction.size()-1);
-	    				}
-	    				if(count_Point_Pass == 3) {
-	    					input_door = true;
-	    					count_Point_Pass = 0;
-	    				}
+	    			if(inputStr.substring(start_Pos, end_Pos).equals(".")) {
+	    				count_Point_Pass++;
+	    				input_door = false;
+	    			}
+	    			else if(input_door == true) {
+	    				Sign.add(inputStr.substring(start_Pos, end_Pos));
+	    				Pos.add(Instruction.size());
+	    			}
+	    			if(count_Point_Pass == 3) {
+	    				input_door = true;
+	    				count_Point_Pass = 0;
 	    			}
 	    		}
 	    		start_Pos = end_Pos+1;
