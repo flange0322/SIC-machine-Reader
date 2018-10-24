@@ -12,6 +12,7 @@ public class Space_breaker {
 	public boolean is_Operator = false;
 	public boolean is_Sign = false;
 	public boolean input_door = true;
+	public boolean byte_space = false;
 	public int start_Pos = 0;
 	public int end_Pos = 0;
 	public int count_Space = 0;
@@ -31,15 +32,18 @@ public class Space_breaker {
 		dl = new Instruction_Op();
 		inputStr = inputStr.replaceAll("\r\n", " ");
 	    
-		//程代戈矪瞶
 	    for(int i=0;i<inputStr.length();i++) {
+	    	//程代戈矪瞶
 	    	if(i == inputStr.length() - 1) {
 	    		is_Space = true;
 	    		end_Pos = i+1;
 	    	}
 	    	
+	    	if(inputStr.charAt(i) == '\'') {
+	    		byte_space = !byte_space;
+	    	}
 	    	//笿Space矪瞶
-	    	if(inputStr.charAt(i) == ' ') {
+	    	if(inputStr.charAt(i) == ' ' && byte_space == false) {
 	    		if(i == 0){
 	    			start_Pos++;
 	    			count_Space++;

@@ -16,12 +16,12 @@ public class Instruction_Operator extends data_Library{
 	public void Combination() {
 		int j = 0;
 		for(int i = 0;i<Instruction.size();i++) {
-			if(!Instruction.get(i).equals("RSUB")) {
+			if(!Instruction.get(i).equals("RSUB")&&!Instruction.get(i).equals("END")) {
 				instruction_Operator.put((i+1)+"."+Instruction.get(i),Operator.get(j));
 				j++;
 			}
 			else 
-				instruction_Operator.put((i+1)+"."+Instruction.get(i),null);
+				instruction_Operator.put((i+1)+"."+Instruction.get(i),"null");
 		}
 	}
 	
