@@ -1,7 +1,7 @@
 import java.io.*;
 public class Main {
 	public static void main(String args[]) throws Exception{
-		FileInputStream fileStream = new FileInputStream ("questions_clone1.txt");  
+		FileInputStream fileStream = new FileInputStream ("questions_example.txt");  
 	    DataInputStream DIS = new DataInputStream (fileStream);  
 	  
 	    byte[] dataInputBytes = new byte[DIS.available()];  
