@@ -16,7 +16,7 @@ public class Instruction_Operator extends data_Library{
 	public void Combination() {
 		int j = 0;
 		for(int i = 0;i<Instruction.size();i++) {
-			if(!Instruction.get(i).equals("RSUB")&&!Instruction.get(i).equals("END")) {
+			if(!Instruction.get(i).equals("RSUB")/*&&!Instruction.get(i).equals("END")*/) {
 				instruction_Operator.put((i+1)+"."+Instruction.get(i),Operator.get(j));
 				j++;
 			}
@@ -29,6 +29,7 @@ public class Instruction_Operator extends data_Library{
 		return instruction_Operator;
 	}
 	
+	//§ì¨ú­º¦ìLOC
 	public String getFirst_Loc() {
 		String real_Instruction = "";
 		for(String start : instruction_Operator.keySet()) {

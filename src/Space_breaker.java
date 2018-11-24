@@ -10,7 +10,6 @@ public class Space_breaker {
 	public boolean is_Space = false;
 	public boolean is_Instruction = false;
 	public boolean is_Operator = false;
-	public boolean is_Sign = false;
 	public boolean input_door = true;
 	public boolean byte_space = false;
 	public int start_Pos = 0;
@@ -30,15 +29,14 @@ public class Space_breaker {
 		Operator = new ArrayList<String>();
 		Pos = new ArrayList<Integer>();
 		dl = new Instruction_Op();
-		inputStr = inputStr.replaceAll("\r\n", " ");
-	    
+		inputStr = inputStr.replace("\r\n"," ");
 	    for(int i=0;i<inputStr.length();i++) {
 	    	//最後一個測資的處理
 	    	if(i == inputStr.length() - 1) {
 	    		is_Space = true;
 	    		end_Pos = i+1;
 	    	}
-	    	
+	    	//當遇到BYTE特例時所進行的處理
 	    	if(inputStr.charAt(i) == '\'') {
 	    		byte_space = !byte_space;
 	    	}
@@ -54,9 +52,8 @@ public class Space_breaker {
 		    		end_Pos = i;
 	    		}
 	    	}
-	    	else {
+	    	else 
 	    		count_Space = 0;
-	    	}
 	    	
 	    	//字串有兩個以上的space處理方法
 	    	if(count_Space > 1) {
@@ -67,21 +64,39 @@ public class Space_breaker {
 	    	//儲存切割完的字串
 	    	if(is_Space == true) {
 	    		for(String instruction : dl.getMap().keySet()) {
-	    			if(inputStr.substring(start_Pos, end_Pos).equals(instruction)) {
+	    			if(inputStr.substring(start_Pos, end_Pos).equals(instruction)/*||inputStr.substring(start_Pos, end_Pos).equals("+"+instruction)*/) {
 	    				is_Instruction = true;
 	    			}
 	    		}
-	    		
+	    		//偵測到是Instruction
 	    		if(is_Instruction == true) {
 	    			Instruction.add(inputStr.substring(start_Pos, end_Pos));
 	    			is_Instruction = false;
 	    			if(!inputStr.substring(start_Pos, end_Pos).equals("RSUB"))
 	    				is_Operator = true;
 	    		}
+	    		//偵測為Operator
 	    		else if(is_Instruction == false && is_Operator == true){
-	    			Operator.add(inputStr.substring(start_Pos, end_Pos));
+	    			String inputStr_noSpace = inputStr.substring(start_Pos, end_Pos);
+	    			for(int j = i;;j++) {
+	    				if(inputStr.charAt(j) == ' ') {
+	    					continue;
+	    				}
+	    				else if(inputStr.charAt(j) == ',') {
+	    					inputStr_noSpace += ",";
+	    				}
+	    				else if(inputStr.charAt(j) == 'X'&&inputStr.charAt(j+1) == ' ') {
+	    					inputStr_noSpace += "X";
+	    					i = j;
+	    				}
+	    				else
+	    					break;
+	    			}
+	    			Operator.add(inputStr_noSpace);
 	    			is_Operator = false;
+	    			input_door = true;
 	    		}
+	    		//偵測為Sign
 	    		else{
 	    			if(inputStr.substring(start_Pos, end_Pos).equals(".")) {
 	    				count_Point_Pass++;
@@ -90,7 +105,9 @@ public class Space_breaker {
 	    			else if(input_door == true) {
 	    				Sign.add(inputStr.substring(start_Pos, end_Pos));
 	    				Pos.add(Instruction.size());
+	    				input_door = false;
 	    			}
+	    			
 	    			if(count_Point_Pass == 3) {
 	    				input_door = true;
 	    				count_Point_Pass = 0;

@@ -77,21 +77,13 @@ public class Object_Code {
 						}
 						//­t¼Æ³B²z
 						else {
-							String binary = Integer.toBinaryString(Math.abs(Int_number));
-							String binary_new = "";
-							while(binary.length() < 16) {
-								if(binary.length() != 16) {
-									binary = "0"+binary;
-								}
+							String check_length = Integer.toHexString(Int_number);
+							if(check_length.length() < 6) {
+								number = Integer.toHexString(Int_number);
 							}
-							
-							for(int j=0;j<binary.length();j++) {
-								if(binary.charAt(j) == '1')
-									binary_new = binary_new +"0";
-								else
-									binary_new = binary_new +"1";
+							else {
+								number = Integer.toHexString(Int_number).substring(2);
 							}
-							number = Integer.toHexString((Integer.valueOf(binary_new,2)+1));
 						}
 						while(number.length() < 6) {
 							if(number.length() != 6) {
@@ -108,6 +100,7 @@ public class Object_Code {
 					}
 					else{
 						object_Codes.add(instruction_Opcodes.get(instruction.substring(start_Pos, end_Pos))+sign_Loc.get(instruction_Operator.get(instruction)));
+
 						break;
 					}
 				}
